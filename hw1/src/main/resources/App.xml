@@ -9,7 +9,7 @@
     </bean>
 
     <bean class="com.av.repositories.TestCaseReaderImpl" name="testCaseReader">
-        <property name="fileName" value="classpath:TestSuite.csv">
+        <property name="fileName" value="./TestSuite.csv">
         </property>
     </bean>
 

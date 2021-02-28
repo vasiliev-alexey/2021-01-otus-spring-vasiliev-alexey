@@ -4,11 +4,13 @@ import com.av.domain.TestCase;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 public class TestCaseReaderImpl implements TestCaseReader {
@@ -24,8 +26,10 @@ public class TestCaseReaderImpl implements TestCaseReader {
     public List<TestCase> GetTestCases() {
         var testSuite = new ArrayList<TestCase>();
         try {
-            var file = ResourceUtils.getFile(fileName);
-            var reader = new BufferedReader(new FileReader(file));
+            var inputStreamReader = new InputStreamReader(
+                new ClassPathResource(fileName, this.getClass().getClassLoader()).getInputStream()
+            );
+            var reader = new BufferedReader(inputStreamReader);
             String line;
 
             int rowCount = 0;
