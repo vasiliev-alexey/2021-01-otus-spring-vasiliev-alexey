@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id 'idea'
+}
+
+group 'com.av'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(platform('org.junit:junit-bom:5.7.1'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+
+    compile 'org.springframework:spring-core:5.3.4'
+    compile 'org.springframework:spring-context:5.3.4'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
+
+}
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

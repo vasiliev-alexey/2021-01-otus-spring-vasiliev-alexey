@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.av.Application">
+    </bean>
+
+    <bean class="com.av.repositories.TestCaseReaderImpl" name="testCaseReader">
+        <property name="fileName" value="classpath:TestSuite.csv">
+        </property>
+    </bean>
+
+
+    <bean name="testSystemService" class="com.av.services.TestSystemServiceImpl">
+        <constructor-arg name="reader" ref="testCaseReader"/>
+        <constructor-arg name="printer" ref="testSuitePrinter"/>
+    </bean>
+    <bean id="testSuitePrinter" class="com.av.services.TestSuitePrinterImpl"/>
+
+</beans>
