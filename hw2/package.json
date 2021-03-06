@@ -1,0 +1,20 @@
+{
+
+  "scripts": {
+
+    "lint": "prettier --check  \"**/*.java\"",
+
+    "lint:fix": "prettier --write  \"**/*.java\""
+
+  },
+
+  "devDependencies": {
+
+    "prettier": "^2.2.1",
+
+    "prettier-plugin-java": "^1.0.1"
+
+  }
+
+}
+
