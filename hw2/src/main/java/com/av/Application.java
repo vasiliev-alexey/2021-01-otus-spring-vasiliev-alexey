@@ -23,10 +23,7 @@ public class Application {
         var examinationService = ctx.getBean("examinationService", ExaminationService.class);
 
         var studentService = ctx.getBean("studentService", StudentService.class);
-
-        Student student = studentService.getStudent();
-
-        examinationService.takeExam(student);
+        examinationService.takeExam();
 
         logger.log(Level.INFO, "go go ");
     }

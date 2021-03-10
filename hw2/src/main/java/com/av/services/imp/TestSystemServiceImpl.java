@@ -2,7 +2,7 @@ package com.av.services.imp;
 
 import com.av.Application;
 import com.av.domain.TestCase;
-import com.av.repositories.TestCaseReader;
+import com.av.repositories.TestCaseProducer;
 import com.av.services.TestSuitePrinter;
 import com.av.services.TestSystemService;
 import java.util.ArrayList;
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 public class TestSystemServiceImpl implements TestSystemService {
 
     private static Logger logger = Logger.getLogger(Application.class.getName());
-    private final TestCaseReader reader;
+    private final TestCaseProducer reader;
     private final TestSuitePrinter printer;
     private static final int GEN_SIZE = 100;
 
     @Autowired
-    public TestSystemServiceImpl(final TestCaseReader reader, final TestSuitePrinter printer) {
+    public TestSystemServiceImpl(final TestCaseProducer reader, final TestSuitePrinter printer) {
         this.reader = reader;
         this.printer = printer;
     }
