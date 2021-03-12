@@ -14,10 +14,10 @@
     </bean>
 
 
-    <bean name="testSystemService" class="com.av.services.TestSystemServiceImpl">
+    <bean name="testSystemService" class="com.av.services.imp.TestSystemServiceImpl">
         <constructor-arg name="reader" ref="testCaseReader"/>
         <constructor-arg name="printer" ref="testSuitePrinter"/>
     </bean>
-    <bean id="testSuitePrinter" class="com.av.services.TestSuitePrinterImpl"/>
+    <bean id="testSuitePrinter" class="com.av.services.imp.TestSuitePrinterImpl"/>
 
 </beans>
