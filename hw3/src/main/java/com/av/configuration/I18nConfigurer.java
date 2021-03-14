@@ -13,7 +13,6 @@ public class I18nConfigurer {
         var messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setBasenames("classpath:/localization/messages", "classpath:/localization/testcases");
-        System.out.println("88888888888888");
         return messageSource;
     }
 }
