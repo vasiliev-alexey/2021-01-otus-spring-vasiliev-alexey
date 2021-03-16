@@ -1,0 +1,3 @@
+application:
+  dataPath: TestSuite.csv
+  locale: ru_RU
