@@ -5,7 +5,7 @@ import java.util.List;
 public interface GenericDomainCrud<K, T> {
     T add(T domain);
 
-    T update(T domain);
+    void update(T domain);
 
     void delete(T domain);
 

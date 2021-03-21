@@ -2,6 +2,9 @@ package com.av.dao.impl;
 
 import com.av.dao.GenreDao;
 import com.av.domain.Genre;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,10 +14,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 
 @Repository
 public class GenreDaoImpl implements GenreDao {
@@ -34,15 +33,13 @@ public class GenreDaoImpl implements GenreDao {
     public Genre add(Genre genre) {
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource parameters = new MapSqlParameterSource().addValue("name", genre.getName());
-        namedJdbcTemplate.update(INSERT_SQL, parameters, holder, new String[]{"id"});
+        namedJdbcTemplate.update(INSERT_SQL, parameters, holder, new String[] { "id" });
         genre.setId(holder.getKey().longValue());
         return genre;
     }
 
     @Override
-    public Genre update(Genre genre) {
-        return null;
-    }
+    public void update(Genre genre) {}
 
     @Override
     public void delete(Genre genre) {
@@ -68,9 +65,9 @@ public class GenreDaoImpl implements GenreDao {
     @Override
     public Genre findByName(String authorName) {
         return namedJdbcTemplate.queryForObject(
-                FETCH_BY_NAME_SQL,
-                new MapSqlParameterSource("genreName", authorName),
-                new GenreRowMapper()
+            FETCH_BY_NAME_SQL,
+            new MapSqlParameterSource("genreName", authorName),
+            new GenreRowMapper()
         );
     }
 

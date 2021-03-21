@@ -21,15 +21,25 @@ create unique index if not exists genre_name_u1
     on genre (name);
 
 
-create table if not exists book
+create table if not exists  book
 (
-    id           serial
-    constraint book_pk primary key,
-    title        varchar(100) not null,
-    isbn         varchar(50)  not null,
-    edition      smallint     not null default 1,
-    publish_year smallint     not null
-    );
+    id serial not null
+        constraint book_pk
+            primary key,
+    title varchar(100) not null,
+    isbn varchar(50) not null,
+    edition smallint default 1 not null,
+    publish_year smallint not null,
+    genre_id integer
+        constraint book_genre_id_fk
+            references genre
+);
+
+
+
+create unique index  if not exists  book_title_u1
+	on book (title, edition);
+
 
 create unique index if not exists book_title_u1
     on book (title, edition);
@@ -51,3 +61,5 @@ create table if not exists book_author_t
 );
 
 
+create unique  index if not exists  book_author_u1
+	on book_author_t (book_id, author_id);

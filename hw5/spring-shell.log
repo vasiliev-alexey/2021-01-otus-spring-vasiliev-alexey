@@ -24,3 +24,53 @@
 1616252962911:show-authors
 1616254498892:showAuthors
 1616254507865:show-authors
+1616264916959:help
+1616264930582:show-books
+1616298985230:show-authors
+1616300663743:show-books
+1616300723963:show-boks
+1616300730247:show-books
+1616302078999:new-book
+1616302092697:new book '11111' 1
+1616302101386:new-book '1111' 1
+1616315743246:new-book qwe 1
+1616315870319:new-book www 1
+1616315976455:new book wwww 1
+1616315983526:new-book qqq 1
+1616316064850:show-books
+1616317027424:help
+1616317041935:set-author-to-new-book qqq
+1616317070606:stacktrace
+1616317217234:help
+1616317280973:set-author-to-new-book www
+1616317368840:set-author-to-new-book "Jon Daw"
+1616318662062:help
+1616318751806:new-book "simple book" 1
+1616318756446:set-author-to-new-book "Jon Daw"
+1616318762618:save-book
+1616318844111:new-book "simple book" 1 "isbn1"
+1616318850481:set-author-to-new-book "Jon Daw"
+1616318854395:save-book
+1616318908334:new-book "simple book111" 1 "isbn1"
+1616318912318:set-author-to-new-book "Jon Daw"
+1616318916253:save-book
+1616319100286:new-book "simple book1122" 1 "isbn1"
+1616319104444:set-author-to-new-book "Jon Daw"
+1616319108351:set-author-to-new-book "Егор Бугаенко"
+1616319114253:save-book
+1616319128304:show-books
+1616324398523:new-book "simple book11211" 1 "isbn1"
+1616324411899:set-author-to-new-book "Jon Daw"
+1616324418299:set-author-to-new-book "Егор Бугаенко"
+1616324437162:save-book
+1616324486588:new-book "simple book11211" 1 "isbn1"
+1616324495799:set-author-to-new-book "Jon Daw"
+1616324508441:save-book
+1616324516040:show-books
+1616332693652:help
+1616332762163:new-book "simple book112114444" 1 "isbn1"
+1616332774354:set-author-to-new-book "Jon Daw"
+1616332778820:set-author-to-new-book "Егор Бугаенко"
+1616332785410:set-genre-to-new-book "computer science"
+1616332791586:save-book
+1616332796947:show-books

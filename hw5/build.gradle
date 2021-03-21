@@ -28,6 +28,10 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile("com.h2database:h2")
+
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.12.2'
+
 }
 
 test {
