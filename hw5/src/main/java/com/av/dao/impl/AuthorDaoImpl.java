@@ -20,8 +20,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AuthorDaoImpl implements AuthorDao {
 
-    private static final String FETCH_SQL = "select * from authors";
-    private static final String FETCH_BY_NAME_SQL = "select * from authors where name = :authorName";
+    private static  final String ALL_COLUMNS= "id, name";
+    private static final String FETCH_SQL = String.format("select %s from authors", ALL_COLUMNS);
+    private static final String FETCH_BY_NAME_SQL =
+            String.format("select  %s from authors where name = :authorName", ALL_COLUMNS);
     private static final String DELETE_SQL = "delete from authors where id= :id";
     private static final String INSERT_SQL = "insert into authors (name) values(:name)";
 
