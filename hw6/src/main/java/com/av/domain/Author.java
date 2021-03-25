@@ -21,8 +21,12 @@ public class Author {
         this.name = name;
         this.id = id;
     }
+    public Author() {
 
+    }
     public Author(String name) {
+
+        this();
         this.name = name;
     }
 

@@ -2,10 +2,6 @@ package com.av.dao.impl;
 
 import com.av.dao.AuthorDao;
 import com.av.domain.Author;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -17,11 +13,19 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class AuthorDaoImpl implements AuthorDao {
 
-    private static  final String ALL_COLUMNS= "id, name";
-    private static final String FETCH_SQL = String.format("select %s from authors", ALL_COLUMNS);
+    private static final String ALL_COLUMNS = "a.id, a.name";
+    private static final String FETCH_SQL = String.format("select a from Author a");
     private static final String FETCH_BY_NAME_SQL =
             String.format("select  %s from authors where name = :authorName", ALL_COLUMNS);
     private static final String DELETE_SQL = "delete from authors where id= :id";
@@ -30,23 +34,27 @@ public class AuthorDaoImpl implements AuthorDao {
     @Resource
     private final NamedParameterJdbcTemplate namedJdbcTemplate;
 
+    @PersistenceContext
+    private final EntityManager entityManager;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public AuthorDaoImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+    public AuthorDaoImpl(NamedParameterJdbcTemplate jdbcTemplate, EntityManager entityManager) {
         this.namedJdbcTemplate = jdbcTemplate;
+        this.entityManager = entityManager;
     }
 
     @Override
     public Author add(Author author) {
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource parameters = new MapSqlParameterSource().addValue("name", author.getName());
-        namedJdbcTemplate.update(INSERT_SQL, parameters, holder, new String[] { "id" });
+        namedJdbcTemplate.update(INSERT_SQL, parameters, holder, new String[]{"id"});
         author.setId(holder.getKey().longValue());
         return author;
     }
 
     @Override
-    public void update(Author domain) {}
+    public void update(Author domain) {
+    }
 
     @Override
     public void delete(Author author) {
@@ -55,7 +63,8 @@ public class AuthorDaoImpl implements AuthorDao {
 
     @Override
     public List<Author> getAll() {
-        return namedJdbcTemplate.query(FETCH_SQL, new AuthorRowMapper());
+        return entityManager.createQuery(FETCH_SQL, Author.class).getResultList();
+
     }
 
     @Override
@@ -73,9 +82,9 @@ public class AuthorDaoImpl implements AuthorDao {
     public Author findByName(String authorName) {
         try {
             var rez = namedJdbcTemplate.queryForObject(
-                FETCH_BY_NAME_SQL,
-                new MapSqlParameterSource("authorName", authorName),
-                new AuthorRowMapper()
+                    FETCH_BY_NAME_SQL,
+                    new MapSqlParameterSource("authorName", authorName),
+                    new AuthorRowMapper()
             );
             return rez;
         } catch (EmptyResultDataAccessException exception) {
