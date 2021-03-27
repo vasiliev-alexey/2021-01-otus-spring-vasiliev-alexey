@@ -1,17 +1,30 @@
 package com.av.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "genres")
+@Table(name = "genre")
+@NamedQueries({
+        @NamedQuery(name = Genre.FIND_ALL , query = "select g from Genre g"),
+        @NamedQuery(name = Genre.FIND_BY_NAME , query = "select g from Genre g where g.name = :name")
+})
 public class Genre {
+
 
     private long id;
     private String name;
 
-    public Genre(long id, String name) {
-        this.name = name;
-        this.id = id;
+    public static final String FIND_ALL = "Genre.findAll";
+    public static final String FIND_BY_NAME = "Genre.findByName";
+
+    public Genre() {
     }
 
     @Id

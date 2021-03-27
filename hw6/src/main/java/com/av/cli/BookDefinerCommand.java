@@ -4,6 +4,7 @@ import com.av.dao.AuthorDao;
 import com.av.dao.BookDao;
 import com.av.dao.GenreDao;
 import com.av.domain.Book;
+import com.av.domain.Comment;
 import com.av.services.ObjectFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.text.MessageFormat;
@@ -11,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+
+import javax.transaction.Transactional;
 
 @ShellComponent
 public class BookDefinerCommand {
@@ -42,19 +45,32 @@ public class BookDefinerCommand {
         }
     }
 
+    @ShellMethod("show all books")
+    public void addComment(String commentAuthor , String commentData ) {
+        if (newBook != null) {
+
+            var comment = new Comment();
+            comment.setText(commentData);
+            comment.setUserName(commentAuthor);
+            comment.setBook(newBook);
+            newBook.getComments().add(comment);
+
+        } else {
+            logger.error("You mast init new book first");
+        }
+    }
+
+
     @ShellMethod("show books")
     public void showBooks() {
         logger.info("ho ho");
         var bookList = bookDao.getAll();
 
         if (bookList.size() != 0) {
-            String data = null;
-            try {
-                data = formatter.format(bookList);
-            } catch (JsonProcessingException e) {
-                logger.error("Ошибка форматирования", e);
-            }
-            logger.info(data);
+            bookList.forEach(b -> {
+                logger.info(b.toString());
+            });
+
         } else {
             logger.debug("No book in db");
         }
@@ -75,9 +91,10 @@ public class BookDefinerCommand {
         }
     }
 
+    @Transactional
     @ShellMethod("save new book")
     public void saveBook() {
-        bookDao.add(newBook);
+        bookDao.save(newBook);
     }
 
     @ShellMethod("set author for new book")

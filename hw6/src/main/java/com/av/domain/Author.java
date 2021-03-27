@@ -1,29 +1,40 @@
 package com.av.domain;
 
-import jdk.jfr.Enabled;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-import javax.annotation.processing.Generated;
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ForeignKey;
+import javax.persistence.ManyToMany;
 import java.util.List;
-import java.util.Set;
 
 
-@Table (name = "authors")
+@Table(name = "authors")
 @Entity
+@NamedQueries(
+        {@NamedQuery(name = Author.FIND_ALL, query = "select a from Author a"),
+                @NamedQuery(name = Author.FIND_BY_NAME, query = "select a from Author a where a.name = :name")
+
+        }
+)
 public class Author {
 
+    public static final String FIND_ALL = "Author.findAll";
+    public static final String FIND_BY_NAME = "Author.byName";
     private long id;
     private String name;
-
     private List<Book> books;
 
-    public Author(long id, String name) {
-        this.name = name;
-        this.id = id;
-    }
     public Author() {
 
     }
+
     public Author(String name) {
 
         this();
@@ -56,12 +67,12 @@ public class Author {
 
 
     @ManyToMany(targetEntity = Book.class)
-    @JoinColumn(foreignKey=@ForeignKey(name="book_fk"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "book_fk"))
     public List<Book> getBooks() {
         return books;
     }
 
-      public void setBooks(List<Book> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

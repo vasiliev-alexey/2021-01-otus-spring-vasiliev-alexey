@@ -63,3 +63,21 @@ create table if not exists book_author_t
 
 create unique  index if not exists  book_author_u1
 	on book_author_t (book_id, author_id);
+
+
+create table  if not exists  comments
+(
+    id bigserial not null,
+    user_name varchar(50) not null,
+    comment_data varchar(1000) not null,
+    book_id bigint not null
+        constraint comments_book_id_fk
+            references book
+            on delete cascade
+);
+
+
+
+create unique index if not exists  comments_u1
+	on comments (id);
+
