@@ -26,8 +26,10 @@ import java.util.Set;
 @Entity
 @Table(name = "book", uniqueConstraints =
         {@UniqueConstraint(columnNames = {"title", "edition"}, name = "book_title_edition_u1")})
-@NamedQueries({@NamedQuery(name = Book.FIND_ALL, query = "select  distinct  b from Book b left join fetch "
-        + "b.authors a left join fetch b.genre g")})
+@NamedQueries({@NamedQuery(name = Book.FIND_ALL, query = "select  distinct  b from Book b "
+        + " left join fetch b.authors a "
+        + " left join fetch b.genre g"
+        + " left join fetch b.comments c")})
 
 public class Book {
 
@@ -52,7 +54,7 @@ public class Book {
     @Column(name = "edition", length = 1)
     private short edition = 1;
 
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private List<Comment> comments = new ArrayList<Comment>() ;
 
