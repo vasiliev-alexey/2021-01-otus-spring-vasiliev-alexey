@@ -60,7 +60,7 @@ public class BookDefinerCommand {
         }
     }
 
-
+   // @Transactional
     @ShellMethod("show books")
     public void showBooks() {
         logger.info("ho ho");

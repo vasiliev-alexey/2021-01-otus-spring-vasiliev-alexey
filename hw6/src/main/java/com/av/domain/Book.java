@@ -1,5 +1,8 @@
 package com.av.domain;
 
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +31,7 @@ import java.util.Set;
         {@UniqueConstraint(columnNames = {"title", "edition"}, name = "book_title_edition_u1")})
 @NamedQueries({@NamedQuery(name = Book.FIND_ALL, query = "select  distinct  b from Book b "
         + " left join fetch b.authors a "
-        + " left join fetch b.genre g"
-        + " left join fetch b.comments c")})
+        + " left join fetch b.genre g")})
 
 public class Book {
 
@@ -54,7 +56,8 @@ public class Book {
     @Column(name = "edition", length = 1)
     private short edition = 1;
 
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     @JoinColumn(name = "book_id")
     private List<Comment> comments = new ArrayList<Comment>() ;
 
