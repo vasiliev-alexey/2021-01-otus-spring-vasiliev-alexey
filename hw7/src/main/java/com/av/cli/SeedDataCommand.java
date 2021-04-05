@@ -22,7 +22,6 @@ public class SeedDataCommand {
                            GenreService genreService) {
         this.bookService = bookDao;
         this.authorDao = authorService;
-
         this.genreService = genreService;
     }
 
@@ -31,10 +30,7 @@ public class SeedDataCommand {
     public void seedData(short bookCount) {
 
         bookService.deleteAll();
-
-
         var genres = genreService.findAll();
-
 
         for (short i = 0; i < bookCount; i++) {
 
@@ -43,7 +39,6 @@ public class SeedDataCommand {
             newBook.setTitle(String.format("fake title%d", i));
             newBook.setEdition(i);
             newBook.setIsbn(String.format("fake isbn %s", i));
-
 
             var comment = new Comment();
             comment.setText(String.format("fake comment data %d", i));

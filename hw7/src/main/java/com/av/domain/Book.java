@@ -35,7 +35,6 @@ public class Book {
     @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinTable(name = "book_author_t", joinColumns = @JoinColumn(foreignKey = @ForeignKey(name = "book_author_key"),
             name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    // @JoinColumn(foreignKey=@ForeignKey(name="book_author_key"))
     private Set<Author> authors;
     @Column(name = "title", length = 255, nullable = false)
     private String title;
