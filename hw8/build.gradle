@@ -1,0 +1,56 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'checkstyle'
+	id 'idea'
+	id 'jacoco'
+}
+
+group = 'com.av'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+	implementation group: 'org.springframework.shell', name: 'spring-shell-starter', version: '2.0.1.RELEASE'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '3.0.0'
+
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.12.2'
+
+	implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
+
+	testImplementation group: 'org.testcontainers', name: 'junit-jupiter', version: '1.15.2'
+// https://mvnrepository.com/artifact/org.testcontainers/mongodb
+	testImplementation group: 'org.testcontainers', name: 'mongodb', version: '1.15.1'
+	implementation group: 'org.testcontainers', name: 'testcontainers-bom', version: '1.15.1', ext: 'pom'
+// https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo
+// https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo
+	testImplementation group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.2.0'
+
+
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	dependsOn test
+}
+

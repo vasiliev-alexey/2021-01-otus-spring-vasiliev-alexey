@@ -1,0 +1,15 @@
+spring:
+  data:
+#    mongodb:
+#      port: 27017
+#      database: library
+#      username: mongod
+#      password: mongod
+#      authentication-database: admin
+
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    org.springframework: ERROR

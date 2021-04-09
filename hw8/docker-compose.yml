@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb_latest
+    command: ["--bind_ip_all"]
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongod
+      MONGO_INITDB_ROOT_PASSWORD: mongod
