@@ -14,3 +14,8 @@ spring:
 logging:
   level:
     org.springframework: ERROR
+
+mongock:
+  runner-type: "InitializingBean"
+  change-logs-scan-package:
+    - com.av.migrations

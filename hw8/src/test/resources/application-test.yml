@@ -13,3 +13,7 @@ spring:
 logging:
   level:
     org.springframework: ERROR
+
+mongock:
+  change-logs-scan-package:
+    - com.av.dao.impl

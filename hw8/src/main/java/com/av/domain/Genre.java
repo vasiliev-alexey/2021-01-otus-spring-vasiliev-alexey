@@ -10,6 +10,11 @@ public class Genre {
     private String id;
     private String name;
 
+    public Genre(String name) {
+        super();
+        this.name = name;
+    }
+
     public Genre() {
     }
 

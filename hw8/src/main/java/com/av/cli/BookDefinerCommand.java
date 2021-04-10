@@ -7,11 +7,12 @@ import com.av.domain.Book;
 import com.av.domain.Comment;
 import com.av.services.ObjectFormatter;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.text.MessageFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+
+import java.text.MessageFormat;
 
 
 @ShellComponent
@@ -27,13 +28,13 @@ public class BookDefinerCommand {
 
     public BookDefinerCommand(BookService bookDao,
                               AuthorService authorService,
-                              ObjectFormatter formatter  ,
-                             GenreService genreService
+                              ObjectFormatter formatter,
+                              GenreService genreService
     ) {
         this.bookDao = bookDao;
         this.authorDao = authorService;
         this.formatter = formatter;
-      this.genreDao = genreService;
+        this.genreDao = genreService;
     }
 
     @ShellMethod("show all books")
@@ -49,7 +50,7 @@ public class BookDefinerCommand {
     }
 
     @ShellMethod("show all books")
-    public void addComment(String commentAuthor , String commentData) {
+    public void addComment(String commentAuthor, String commentData) {
         if (newBook != null) {
 
             var comment = new Comment();

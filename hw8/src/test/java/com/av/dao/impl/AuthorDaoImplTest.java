@@ -3,6 +3,7 @@ package com.av.dao.impl;
 import com.av.dao.AuthorService;
 import com.av.domain.Author;
 import com.av.services.impl.AuthorServiceImpl;
+import com.github.cloudyrock.spring.v5.EnableMongock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Testcontainers
 @DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
 @TestPropertySource(properties = {"spring.config.location=classpath:application-test.yml"})
+@EnableMongock
 class AuthorDaoImplTest {
 
     @Container
@@ -34,26 +36,11 @@ class AuthorDaoImplTest {
 
     @Autowired
     private AuthorService authorDao;
-    @Autowired
-    private MongoOperations mongoOps;
+
 
     @DynamicPropertySource
     static void setProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.data.mongodb.uri", mongoDBContainer::getReplicaSetUrl);
-    }
-
-    @BeforeEach
-    void setUp() {
-        if (!mongoOps.collectionExists(Author.class)) {
-            mongoOps.createCollection(Author.class);
-        }
-        authorDao.save(new Author("Jon Daw"));
-
-    }
-
-    @AfterEach
-    void tearDown() {
-        mongoOps.dropCollection(Author.class);
     }
 
     @Test
@@ -70,20 +57,22 @@ class AuthorDaoImplTest {
         var a = authorDao.save(author);
         assertNotNull(a.getId(), "author nor added");
         var authorList = authorDao.findAll();
-        assertEquals(2, authorList.size(), "author not fetched");
+        assertEquals(3, authorList.size(), "author not fetched");
     }
 
     @Test
     void findByName() {
         var jonDaw = authorDao.findByName("Jon Daw");
-        assertNotNull(jonDaw.getId());
+
+        assertNotNull(jonDaw);
     }
 
     @Test
     void delete() {
-        var jonDaw = authorDao.findByName("Jon Daw");
-        assertNotNull(jonDaw);
-        authorDao.delete(jonDaw);
+        var test_for_delete = authorDao.findByName("Test for Delete");
+
+        assertNotNull(test_for_delete);
+        authorDao.delete(test_for_delete);
     }
 
 

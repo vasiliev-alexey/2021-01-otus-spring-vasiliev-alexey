@@ -3,13 +3,13 @@ package com.av.cli;
 import com.av.dao.AuthorService;
 import com.av.dao.BookService;
 import com.av.dao.GenreService;
-import com.av.domain.Author;
 import com.av.domain.Book;
 import com.av.domain.Comment;
-import com.av.domain.Genre;
 import com.google.common.collect.Sets;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+
+import java.util.Random;
 
 @ShellComponent
 public class SeedDataCommand {
@@ -27,27 +27,19 @@ public class SeedDataCommand {
         this.genreService = genreService;
     }
 
+    private int getRandomNumberUsingInts(int max) {
+        Random random = new Random();
+        return random.ints(0, max)
+                .findFirst()
+                .getAsInt();
+    }
+
     @ShellMethod("seed sample data")
     public void seedData(short bookCount) {
 
         bookService.deleteAll();
         var genres = genreService.findAll();
-
-        if (genres.isEmpty()) {
-            var newGenre = new Genre();
-            newGenre.setName("fake-genre");
-            genreService.save(newGenre);
-            genres = genreService.findAll();
-        }
-
         var authors = authorDao.findAll();
-
-        if (authors.size() < 2) {
-            authorDao.save(new Author("fake author 1"));
-            authorDao.save(new Author("fake author 2"));
-            authorDao.save(new Author("fake author 3"));
-            authors = authorDao.findAll();
-        }
 
         for (short i = 0; i < bookCount; i++) {
 
@@ -62,8 +54,8 @@ public class SeedDataCommand {
             comment.setBook(newBook);
 
             newBook.getComments().add(comment);
-            newBook.setGenre(genres.get(0));
-            newBook.setAuthors(Sets.newHashSet(authors.subList(1, 2)));
+            newBook.setGenre(genres.get(getRandomNumberUsingInts(genres.size())));
+            newBook.setAuthors(Sets.newHashSet(authors.subList(0, getRandomNumberUsingInts(authors.size()))));
 
             bookService.save(newBook);
 
