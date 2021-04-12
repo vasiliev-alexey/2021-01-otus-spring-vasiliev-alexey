@@ -23,8 +23,8 @@ public class Book {
     private int publishYear;
     private String isbn;
     private short edition = 1;
-    @DBRef
-    private List<Comment> comments ;
+
+    private List<Comment> comments;
 
     public Book() {
         authors = new HashSet<>();

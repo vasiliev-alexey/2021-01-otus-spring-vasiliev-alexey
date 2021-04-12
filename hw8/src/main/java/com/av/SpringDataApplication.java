@@ -9,9 +9,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "com.av.dao")
 @EnableMongock
 public class SpringDataApplication {
-
-
-
     public static void main(String[] args) {
         SpringApplication.run(SpringDataApplication.class, args);
     }

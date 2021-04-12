@@ -1,28 +1,17 @@
 package com.av.domain;
 
-
 public class Comment {
-    private long id;
+
     private String userName;
     private String text;
 
-    private Book book;
-
-    public Book getBook() {
-        return book;
+    public Comment() {
     }
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public Comment(String userName, String text) {
+        super();
+           this.userName = userName;
+        this.text = text;
     }
 
     public String getUserName() {
@@ -44,7 +33,6 @@ public class Comment {
     @Override
     public String toString() {
         return "Comment{"
-                + "id=" + id
                 + ", userName='" + userName + '\''
                 + ", text='" + text + '\''
                 + '}';

@@ -18,21 +18,21 @@ import java.text.MessageFormat;
 @ShellComponent
 public class BookDefinerCommand {
 
-    private final BookService bookDao;
-    private final AuthorService authorDao;
+    private final BookService bookService;
+    private final AuthorService authorService;
     private final ObjectFormatter formatter;
     private final GenreService genreDao;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private Book newBook = new Book();
 
-    public BookDefinerCommand(BookService bookDao,
+    public BookDefinerCommand(BookService bookService,
                               AuthorService authorService,
                               ObjectFormatter formatter,
                               GenreService genreService
     ) {
-        this.bookDao = bookDao;
-        this.authorDao = authorService;
+        this.bookService = bookService;
+        this.authorService = authorService;
         this.formatter = formatter;
         this.genreDao = genreService;
     }
@@ -40,7 +40,7 @@ public class BookDefinerCommand {
     @ShellMethod("show all books")
     public void listBooks() {
         logger.info("ho ho");
-        var books = bookDao.findAll();
+        var books = bookService.findAll();
 
         if (books.size() != 0) {
             books.forEach(book -> logger.info(MessageFormat.format("Book:{0}", book.toString())));
@@ -56,7 +56,7 @@ public class BookDefinerCommand {
             var comment = new Comment();
             comment.setText(commentData);
             comment.setUserName(commentAuthor);
-            comment.setBook(newBook);
+
             newBook.getComments().add(comment);
 
         } else {
@@ -68,7 +68,7 @@ public class BookDefinerCommand {
     @ShellMethod("show books")
     public void showBooks() {
         logger.info("ho ho");
-        var bookList = bookDao.findAll();
+        var bookList = bookService.findAll();
 
         if (bookList.size() != 0) {
             bookList.forEach(b -> {
@@ -98,14 +98,13 @@ public class BookDefinerCommand {
 
     @ShellMethod("save new book")
     public void saveBook() {
-        bookDao.save(newBook);
+        bookService.save(newBook);
     }
 
     @ShellMethod("set author for new book")
     public void setAuthorToNewBook(String authorName) {
         if (newBook != null) {
-            var author = authorDao.findByName(authorName);
-
+            var author = authorService.findByName(authorName);
             if (author != null) {
                 newBook.getAuthors().add(author);
                 logger.info(String.format("author by name=%s added to book", authorName));
@@ -121,7 +120,6 @@ public class BookDefinerCommand {
     public void setGenreToNewBook(String genreName) {
         if (newBook != null) {
             var genre = genreDao.findByName(genreName);
-
             if (genre != null) {
                 newBook.setGenre(genre);
                 logger.info(String.format("genre by name=%s added to book", genre.getName()));
