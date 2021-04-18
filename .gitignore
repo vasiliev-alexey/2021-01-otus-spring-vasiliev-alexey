@@ -24,5 +24,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 */spring-shell.log
 **/spring-shell.log
-hw6/src/main/resources/create.sql
 src/main/resources/create.sql
+
+
+Заметки.md
