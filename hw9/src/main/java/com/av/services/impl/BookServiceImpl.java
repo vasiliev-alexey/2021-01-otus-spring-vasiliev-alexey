@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("bookService")
 public class BookServiceImpl implements BookService {
@@ -39,5 +40,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteAll() {
         bookRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteById(Long bookId) {
+        bookRepository.deleteById(bookId);
+    }
+
+    @Override
+    public Optional<Book> getById(Long bookId) {
+       return bookRepository.findById(bookId);
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <title>Библиотека</title>
 <meta name='viewport' content='width=device-width, initial-scale=1' />
 <meta name='Description' content='Библиотека' />
@@ -37,27 +37,27 @@
 </div>
 
 <div class="container">
-    <table class="centered">
-  <thead>
-  <tr>
-    <th hidden="true">ID</th>
-    <th>Name</th>
+  <form id="edit-form" th:action="@{/book/remove(id=${book.id})}" th:method="post" action="remove">
+    <h1>Book Info:</h1>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="genre : ${genres}">
-    <td th:text="${genre.id}" hidden="true">1</td>
-    <td th:text="${genre.name}">John Doe</td>
-    <!--        <td>-->
-    <!--            <a th:href="@{/edit(id=${person.id})}" href="edit.html">Edit</a>-->
-    <!--        </td>-->
-  </tr>
-  </tbody>
-</table>
-    <div class="page">
-
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" th:value="${book.id}" value="1"/>
     </div>
+
+    <div class="row">
+        <label for="holder-input">title:</label>
+        <input id="holder-input" name="title" type="text" th:value="${book.title}" value="John Doe"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">remove</button>
+    </div>
+</form>
+
+  <div class="page">
+
+  </div>
 </div>
 <footer class="footer">
 

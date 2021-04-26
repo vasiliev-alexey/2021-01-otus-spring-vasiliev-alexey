@@ -1,0 +1,32 @@
+<table class="centered">
+  <thead>
+  <tr>
+    <th hidden="true">ID</th>
+    <th>Название книги</th>
+    <th>ISBN</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book : ${books}">
+    <td th:text="${book.id}" hidden="true">1</td>
+    <td th:text="${book.title}">Book title</td>
+
+    <td th:text="${book.isbn}">ISBN</td>
+
+    <td>
+      <a th:href="@{/book/edit(id=${book.id})}" href="book/edit">
+        <img  src="./images/pencil.png">
+      </a>
+    </td>
+    <td>
+      <a th:href="@{/book/delete(id=${book.id})}" href="book/delete">
+        <img  src="./images/delete.png">
+      </a>
+    </td>
+
+    <!--        <td>-->
+    <!--            <a th:href="@{/edit(id=${person.id})}" href="edit.html">Edit</a>-->
+    <!--        </td>-->
+  </tr>
+  </tbody>
+</table>

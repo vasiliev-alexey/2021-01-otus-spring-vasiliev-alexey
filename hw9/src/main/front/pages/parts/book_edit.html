@@ -1,0 +1,23 @@
+<form id="edit-form" th:action="@{/book/save(id=${book.id})}" th:method="post" action="edit">
+    <h1>Book Info:</h1>
+
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" th:value="${book.id}" value="1"/>
+    </div>
+
+    <div class="row">
+        <label for="holder-input">title:</label>
+        <input id="holder-input" name="title" type="text" th:value="${book.title}" value="John Doe"/>
+    </div>
+
+    <div class="row">
+        <label for="holder-input">isbn:</label>
+        <input id="holder-isbn" name="isbn" type="text" th:value="${book.isbn}" value="isbn"/>
+    </div>
+
+
+    <div class="row">
+        <button type="submit">Save</button>
+    </div>
+</form>

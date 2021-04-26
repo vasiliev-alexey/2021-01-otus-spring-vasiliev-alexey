@@ -26,15 +26,11 @@ body {
 }
 
 .container {
-  width: auto;
   height: 78%;
-  display: flex;
   background: white;
-}
-@media screen and (max-width: 768px) {
-  .container {
-    padding-top: 78px;
-  }
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }
 
 .page {
@@ -284,6 +280,18 @@ picture {
   flex-shrink: 0;
   flex-basis: 30px;
   text-decoration: none;
+}
+
+thead {
+  display: block;
+  width: 600px;
+}
+
+tbody {
+  display: block;
+  width: 600px;
+  height: 800px;
+  overflow: auto;
 }
 
 .aside {

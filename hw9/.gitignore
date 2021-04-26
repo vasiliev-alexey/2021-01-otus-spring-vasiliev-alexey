@@ -18,5 +18,5 @@ out/
 !**/src/test/**/out/
 
 
-/src/main/front/
+#/src/main/front/
 
