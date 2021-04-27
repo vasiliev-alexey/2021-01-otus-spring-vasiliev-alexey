@@ -14,8 +14,8 @@ import java.util.List;
 
 @Controller
 public class BookController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final BookService bookService;
 
     public BookController(BookService bookService) {
@@ -23,7 +23,7 @@ public class BookController {
     }
 
     @GetMapping("books")
-    public String GetAllBooks(Model model) {
+    public String getAllBooks(Model model) {
 
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
@@ -31,7 +31,7 @@ public class BookController {
     }
 
     @GetMapping("book/edit")
-    public String EditBook(@RequestParam("id") Long bookId, Model model) {
+    public String editBook(@RequestParam("id") Long bookId, Model model) {
 
         logger.info("book/edit income");
         var book = bookService.getById(bookId).get();
@@ -40,7 +40,7 @@ public class BookController {
     }
 
     @GetMapping("book/delete")
-    public String RemoveBook(@RequestParam("id") Long bookId, Model model) {
+    public String removeBook(@RequestParam("id") Long bookId, Model model) {
 
         logger.info("book/edit income booki=" + bookId);
         var book = bookService.getById(bookId).get();
@@ -51,14 +51,22 @@ public class BookController {
 
 
     @PostMapping("book/remove")
-    public String RemoveBook(Book book, Model model) {
+    public String removeBook(Book book, Model model) {
         logger.info("book/RemoveBook income");
         bookService.deleteById(book.getId());
         return "redirect:/books";
     }
 
+    @GetMapping("book/new")
+    public String newBook(Model model) {
+        logger.info("book/new book income");
+        model.addAttribute("book", new Book());
+        return "book_new";
+    }
+
+
     @PostMapping("book/save")
-    public String SaveBook(Book book, Model model) {
+    public String saveBook(Book book, Model model) {
         logger.info("book/book income");
         bookService.save(book);
         return "redirect:/books";

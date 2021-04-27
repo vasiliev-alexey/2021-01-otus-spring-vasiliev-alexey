@@ -24,10 +24,10 @@
   <div class="head__nav">
     <a class="head__link" href="./">Главная</a>
 
-    <a class="head__link" href="./books">Книги</a>
-    <a class="head__link" href="./#">Новая книга в библиотеку</a>
-      <a class="head__link" href="./genres">Список жанров</a>
-      <a class="head__link" href="./author">Список авторов</a>
+    <a class="head__link"  th:href="@{/books}" >Книги</a>
+    <a class="head__link" th:href="@{/book/new}">Новая книга в библиотеку</a>
+      <a class="head__link" th:href="@{/genres}">Список жанров</a>
+      <a class="head__link" th:href="@{/author}">Список авторов</a>
     <!--    <a class="head__link" href="./login.html">Войти</a>-->
   </div>
 
@@ -59,9 +59,6 @@
 
     </div>
 </div>
-<footer class="footer">
-
-</footer>
 
 <script src="main.js"></script></body>
 </html>

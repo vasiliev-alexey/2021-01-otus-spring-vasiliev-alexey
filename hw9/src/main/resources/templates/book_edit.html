@@ -24,22 +24,17 @@
   <div class="head__nav">
     <a class="head__link" href="./">Главная</a>
 
-    <a class="head__link" href="./books">Книги</a>
-    <a class="head__link" href="./#">Новая книга в библиотеку</a>
-      <a class="head__link" href="./genres">Список жанров</a>
-      <a class="head__link" href="./author">Список авторов</a>
-    <!--    <a class="head__link" href="./login.html">Войти</a>-->
+    <a class="head__link"  th:href="@{/books}" >Книги</a>
+    <a class="head__link" th:href="@{/book/new}">Новая книга в библиотеку</a>
+      <a class="head__link" th:href="@{/genres}">Список жанров</a>
+      <a class="head__link" th:href="@{/author}">Список авторов</a>
   </div>
 
-<!--  <div class="head__auth">-->
-<!--    <a href="./login.html">Войти</a>-->
-<!--  </div>-->
 </div>
 
 <div class="container">
-  <form id="edit-form" th:action="@{/book/save(id=${book.id})}" th:method="post" action="edit">
-    <h1>Book Info:</h1>
-
+  <form id="edit-form" th:action="@{/book/save(id=${book.id})}" th:object="${book}" th:method="post" action="edit">
+    <h5 class="centered">Информация о книге:</h5>
     <div class="row">
         <label for="id-input">ID:</label>
         <input id="id-input" type="text" readonly="readonly" th:value="${book.id}" value="1"/>
@@ -55,19 +50,24 @@
         <input id="holder-isbn" name="isbn" type="text" th:value="${book.isbn}" value="isbn"/>
     </div>
 
-
+    <table>
+        <tr th:each="author, stat : ${book.authors}">
+            <td th:text="${author.id}" th:field="${author.id}">Onions</td>
+            <td th:text="${author.name}" th:field="${author.name}">2.41</td>
+            <input type="hidden" th:field="*{authors[__${stat.index}__].id}"
+                   th:value="*{authors[__${stat.index}__].id}"/>
+            <input type="hidden" th:field="*{authors[__${stat.index}__].name}"
+                   th:value="*{authors[__${stat.index}__].name}"/>
+        </tr>
+    </table>
     <div class="row">
         <button type="submit">Save</button>
     </div>
 </form>
 
   <div class="page">
-
   </div>
 </div>
-<footer class="footer">
-
-</footer>
 
 <script src="main.js"></script></body>
 </html>

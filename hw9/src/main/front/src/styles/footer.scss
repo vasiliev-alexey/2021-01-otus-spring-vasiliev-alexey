@@ -1,32 +1,7 @@
-@mixin size {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  margin: 1%;
-}
-
 .footer {
   clear: both;
   background: white;
   height: 10%;
   display: flex;
   justify-content: center;
-
-  //
-  //img {
-  //  background-image :url('../img/vk.png');
-  //  background-repeat: no-repeat;
-  //  @include size;
-  //
-  //}
-}
-
-.footer__img {
-  @include size;
-}
-
-
-
-picture {
-  border-image: none;
 }

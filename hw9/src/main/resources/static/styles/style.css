@@ -232,28 +232,12 @@ body {
   justify-content: center;
 }
 
-.footer__img {
-  width: 32px;
-  height: 32px;
-  background-repeat: no-repeat;
-  margin: 1%;
-}
-
-picture {
-  border-image: none;
-}
-
 .main {
   width: 100%;
   overflow: auto;
   flex-direction: column;
   height: 100%;
   display: flex;
-}
-@media screen and (max-width: 768px) {
-  .main {
-    overflow-x: hidden;
-  }
 }
 
 .mainPosts {
@@ -289,8 +273,9 @@ thead {
 
 tbody {
   display: block;
-  width: 600px;
-  height: 800px;
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
   overflow: auto;
 }
 

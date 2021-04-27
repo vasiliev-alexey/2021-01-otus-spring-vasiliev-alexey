@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang='ru' xmlns:th='http://www.thymeleaf.org'>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <%= require('html-loader?{"attributes": false}!./parts/common.html') %>
 </head>
 <body>
 <%= require('html-loader?{"attributes": false}!./parts/head.html') %>
-<div class='container'>
-  <div class='page'>
-
+<div class="container">
+  <%= require('html-loader?{"attributes": false}!./parts/book_new.html') %>
+  <div class="page">
   </div>
 </div>
 

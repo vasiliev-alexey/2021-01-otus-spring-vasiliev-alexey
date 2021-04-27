@@ -12,14 +12,10 @@
   <div class="head__nav">
     <a class="head__link" href="./">Главная</a>
 
-    <a class="head__link" href="./books">Книги</a>
-    <a class="head__link" href="./#">Новая книга в библиотеку</a>
-      <a class="head__link" href="./genres">Список жанров</a>
-      <a class="head__link" href="./author">Список авторов</a>
-    <!--    <a class="head__link" href="./login.html">Войти</a>-->
+    <a class="head__link"  th:href="@{/books}" >Книги</a>
+    <a class="head__link" th:href="@{/book/new}">Новая книга в библиотеку</a>
+      <a class="head__link" th:href="@{/genres}">Список жанров</a>
+      <a class="head__link" th:href="@{/author}">Список авторов</a>
   </div>
 
-<!--  <div class="head__auth">-->
-<!--    <a href="./login.html">Войти</a>-->
-<!--  </div>-->
 </div>

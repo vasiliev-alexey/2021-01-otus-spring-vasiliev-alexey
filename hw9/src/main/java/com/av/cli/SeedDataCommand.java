@@ -5,7 +5,6 @@ import com.av.dao.BookService;
 import com.av.dao.GenreService;
 import com.av.domain.Book;
 import com.av.domain.Comment;
-import com.google.common.collect.Sets;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
@@ -46,7 +45,7 @@ public class SeedDataCommand {
             comment.setBook(newBook);
             newBook.getComments().add(comment);
             newBook.setGenre(genres.get(1));
-            newBook.setAuthors(Sets.newHashSet(authorDao.findAll().subList(1, 2)));
+            newBook.setAuthors(authorDao.findAll().subList(1, 2));
 
             bookService.save(newBook);
 
