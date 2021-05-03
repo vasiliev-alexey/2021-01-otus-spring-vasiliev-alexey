@@ -1,0 +1,11 @@
+.page {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding: 10px;
+  display: block;
+
+  @include pads {
+    overflow-x: hidden;
+  }
+}

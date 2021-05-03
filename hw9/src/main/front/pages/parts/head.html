@@ -1,0 +1,21 @@
+<div class="head">
+  <label class="head_burgerLabel">Персоональный блог</label>
+  <input type="checkbox" class="head_burger" id="burger-check" />
+
+        <img
+          src="./images/favicon.ico"
+          alt="Библиотека лого"
+          width="48"
+          height="48"
+        />
+
+  <div class="head__nav">
+    <a class="head__link" href="./">Главная</a>
+
+    <a class="head__link"  th:href="@{/books}" >Книги</a>
+    <a class="head__link" th:href="@{/book/new}">Новая книга в библиотеку</a>
+      <a class="head__link" th:href="@{/genres}">Список жанров</a>
+      <a class="head__link" th:href="@{/author}">Список авторов</a>
+  </div>
+
+</div>

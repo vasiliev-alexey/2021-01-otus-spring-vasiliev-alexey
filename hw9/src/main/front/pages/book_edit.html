@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <%= require('html-loader?{"attributes": false}!./parts/common.html') %>
+</head>
+<body>
+<%= require('html-loader?{"attributes": false}!./parts/head.html') %>
+<div class="container">
+  <%= require('html-loader?{"attributes": false}!./parts/book_edit.html') %>
+  <div class="page">
+  </div>
+</div>
+
+</body>
+</html>
