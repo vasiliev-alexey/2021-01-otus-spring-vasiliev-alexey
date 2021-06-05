@@ -60,8 +60,8 @@ http://localhost:8080/
 
 3. Заходим под 
 
-| Логин |  пароль |   роль|
-admin :  password | ADMIN
+| Логин |  пароль |   роль|  
+admin :  password | ADMIN  
 user : password | USER
 
 Для роли ADMIN даны права на просмотр жанров и авторов
